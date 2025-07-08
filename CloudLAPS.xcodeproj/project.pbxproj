@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,16 @@
 		7B09B3872E0B1BB400BB3C64 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AppIcon.icon; sourceTree = "<group>"; };
 		7B0B7A7F2E15E44500E83306 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		7B17EE492C9E03ED006DFE5E /* catalyst.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catalyst.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B228F992E1D916500F9BCF9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7B228F9B2E1D916500F9BCF9 /* custom.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = custom.css; sourceTree = "<group>"; };
+		7B228F9E2E1D916500F9BCF9 /* .nojekyll */ = {isa = PBXFileReference; lastKnownFileType = text; path = .nojekyll; sourceTree = "<group>"; };
+		7B228FA02E1D916500F9BCF9 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7B228FA12E1D916500F9BCF9 /* babel.config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = babel.config.js; sourceTree = "<group>"; };
+		7B228FA22E1D916500F9BCF9 /* docusaurus.config.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = docusaurus.config.ts; sourceTree = "<group>"; };
+		7B228FA32E1D916500F9BCF9 /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		7B228FA42E1D916500F9BCF9 /* package-lock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
+		7B228FA52E1D916500F9BCF9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7B228FA62E1D916500F9BCF9 /* tsconfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tsconfig.json; sourceTree = "<group>"; };
 		7B5D01FA2BF52A2000CA5294 /* catalyst.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = catalyst.entitlements; sourceTree = "<group>"; };
 		7B5D02032BF5511F00CA5294 /* libSecureKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = libSecureKey.swift; sourceTree = "<group>"; };
 		7B8EC0102D306D7700B91134 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
@@ -38,11 +48,6 @@
 		7BBE21A72BD815F70078FC52 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		7BD8C8BB2CE7EAE800581D7C /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		7B2D47D12CD57AE900BCB408 /* Scripts */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Scripts; sourceTree = "<group>"; };
-		7B8EC0232D306E8400B91134 /* website */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = website; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		7B5D01EC2BF52A1E00CA5294 /* Frameworks */ = {
@@ -59,7 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				7B0B7A7F2E15E44500E83306 /* AppIcon.xcassets */,
-				7B8EC0232D306E8400B91134 /* website */,
+				7B228FA72E1D916500F9BCF9 /* website */,
 				7B8EC0102D306D7700B91134 /* CONTRIBUTING.md */,
 				7B8EC0112D306D7700B91134 /* ContributorAgreement.txt */,
 				7B8EC0132D306D7700B91134 /* SECURITY.md */,
@@ -83,10 +88,58 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7B228F9A2E1D916500F9BCF9 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				7B228F992E1D916500F9BCF9 /* README.md */,
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
+		7B228F9C2E1D916500F9BCF9 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				7B228F9B2E1D916500F9BCF9 /* custom.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		7B228F9D2E1D916500F9BCF9 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				7B228F9C2E1D916500F9BCF9 /* css */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		7B228F9F2E1D916500F9BCF9 /* static */ = {
+			isa = PBXGroup;
+			children = (
+				7B228F9E2E1D916500F9BCF9 /* .nojekyll */,
+			);
+			path = static;
+			sourceTree = "<group>";
+		};
+		7B228FA72E1D916500F9BCF9 /* website */ = {
+			isa = PBXGroup;
+			children = (
+				7B228F9A2E1D916500F9BCF9 /* docs */,
+				7B228F9D2E1D916500F9BCF9 /* src */,
+				7B228F9F2E1D916500F9BCF9 /* static */,
+				7B228FA02E1D916500F9BCF9 /* .gitignore */,
+				7B228FA12E1D916500F9BCF9 /* babel.config.js */,
+				7B228FA22E1D916500F9BCF9 /* docusaurus.config.ts */,
+				7B228FA32E1D916500F9BCF9 /* package.json */,
+				7B228FA42E1D916500F9BCF9 /* package-lock.json */,
+				7B228FA52E1D916500F9BCF9 /* README.md */,
+				7B228FA62E1D916500F9BCF9 /* tsconfig.json */,
+			);
+			path = website;
+			sourceTree = "<group>";
+		};
 		7B5D01F02BF52A1E00CA5294 /* catalyst */ = {
 			isa = PBXGroup;
 			children = (
-				7B2D47D12CD57AE900BCB408 /* Scripts */,
 				7816B4132BD03DBC00F125D3 /* main.swift */,
 				7BBE219A2BD6E0DC0078FC52 /* common.swift */,
 				7BBE219C2BD6E9B50078FC52 /* libCatalyst.swift */,

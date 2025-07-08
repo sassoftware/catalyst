@@ -14,8 +14,10 @@ name: "CodeQL Advanced"
 on:
   push:
     branches: [ "main" ]
+    paths: ['catalyst/**', 'CloudLAPS.xcodeproj/**']
   pull_request:
     branches: [ "main" ]
+    paths: ['catalyst/**', 'CloudLAPS.xcodeproj/**']
   schedule:
     - cron: '29 4 * * 4'
 

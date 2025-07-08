@@ -1,0 +1,74 @@
+{
+  "fill" : {
+    "linear-gradient" : [
+      "display-p3:0.49412,0.42745,1.00000,1.00000",
+      "srgb:0.11765,0.23529,1.00000,1.00000"
+    ]
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "fill" : {
+            "solid" : "srgb:0.86275,0.67059,0.09804,1.00000"
+          },
+          "glass" : true,
+          "image-name" : "Vector.svg",
+          "name" : "Vector",
+          "position" : {
+            "scale" : 3,
+            "translation-in-points" : [
+              200,
+              150
+            ]
+          }
+        },
+        {
+          "fill" : {
+            "solid" : "display-p3:0.00000,0.00000,0.00000,1.00000"
+          },
+          "glass" : true,
+          "image-name" : "link.svg",
+          "name" : "link",
+          "position" : {
+            "scale" : 3,
+            "translation-in-points" : [
+              0,
+              20
+            ]
+          }
+        },
+        {
+          "fill" : {
+            "linear-gradient" : [
+              "display-p3:0.85098,0.85098,0.85098,1.00000",
+              "srgb:0.57647,0.57647,0.57647,1.00000"
+            ]
+          },
+          "image-name" : "Union.svg",
+          "name" : "Union",
+          "position" : {
+            "scale" : 3,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : [
+      "macOS"
+    ]
+  }
+}

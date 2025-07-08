@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AdminUsername</key>
+	<string>&lt;LOCAL_ADMIN_USERNAME&gt;</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>DaysToExpiration</key>
+	<integer>0</integer>
+	<key>DeviceId</key>
+	<string>&lt;DEVICE_ID_HERE&gt;</string>
+	<key>FirstPassword</key>
+	<string>&lt;FIRST_PASSWORD_HERE&gt;</string>
+	<key>RemoveKeychain</key>
+	<false/>
+	<key>SendClientEventURI</key>
+	<string>&lt;CLIENT_EVENT_URI&gt;</string>
+	<key>SetSecretURI</key>
+	<string>&lt;SET_SECRET_URI&gt;</string>
+	<key>IdentUri</key>
+	<string>&lt;IDENT_URI&gt;</string>
+	<key>UPN</key>
+	<string>&lt;UPN_HERE&gt;</string>
+	<key>UseFirstPassword</key>
+	<true/>
+	<key>UseSecureEnclaveIfAvailable</key>
+	<true/>
+	<key>MigrateFromMacOSLAPS</key>
+	<true/>
+</dict>
+</plist>

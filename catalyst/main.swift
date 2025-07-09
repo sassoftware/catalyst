@@ -74,13 +74,6 @@ do {
 }
 logger.trace("plist variables verification success")
 
-/* Delete Keychain entry */
-/// Checks if any old macOSLAPS Keychain entries exist, and deletes them if so.
-let exp_keychain_id = try? String(contentsOfFile: "/var/root/.GeneratedLAPSServiceName", encoding: .utf8)
-if(exp_keychain_id != nil) {
-    KeychainService.deleteExport(service: exp_keychain_id!)
-}
-
 /// The Device Name
 let deviceName = getDeviceName()
 /// Debug Variable

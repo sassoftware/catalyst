@@ -26,7 +26,5 @@
 	<true/>
 	<key>UseSecureEnclaveIfAvailable</key>
 	<true/>
-	<key>MigrateFromMacOSLAPS</key>
-	<true/>
 </dict>
 </plist>

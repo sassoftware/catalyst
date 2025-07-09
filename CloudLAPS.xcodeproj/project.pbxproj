@@ -34,6 +34,7 @@
 		7B228FA42E1D916500F9BCF9 /* package-lock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
 		7B228FA52E1D916500F9BCF9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7B228FA62E1D916500F9BCF9 /* tsconfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tsconfig.json; sourceTree = "<group>"; };
+		7B228FAA2E1DA3FC00F9BCF9 /* postinstall */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postinstall; sourceTree = "<group>"; };
 		7B5D01FA2BF52A2000CA5294 /* catalyst.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = catalyst.entitlements; sourceTree = "<group>"; };
 		7B5D02032BF5511F00CA5294 /* libSecureKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = libSecureKey.swift; sourceTree = "<group>"; };
 		7B8EC0102D306D7700B91134 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 		7816B4072BD03DBC00F125D3 = {
 			isa = PBXGroup;
 			children = (
+				7B228FA92E1DA3E100F9BCF9 /* scripts */,
 				7B0B7A7F2E15E44500E83306 /* AppIcon.xcassets */,
 				7B228FA72E1D916500F9BCF9 /* website */,
 				7B8EC0102D306D7700B91134 /* CONTRIBUTING.md */,
@@ -135,6 +137,14 @@
 				7B228FA62E1D916500F9BCF9 /* tsconfig.json */,
 			);
 			path = website;
+			sourceTree = "<group>";
+		};
+		7B228FA92E1DA3E100F9BCF9 /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				7B228FAA2E1DA3FC00F9BCF9 /* postinstall */,
+			);
+			path = scripts;
 			sourceTree = "<group>";
 		};
 		7B5D01F02BF52A1E00CA5294 /* catalyst */ = {
@@ -387,7 +397,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 66.0;
+				MARKETING_VERSION = 67.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sas.catalyst;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -428,7 +438,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 66.0;
+				MARKETING_VERSION = 67.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sas.catalyst;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

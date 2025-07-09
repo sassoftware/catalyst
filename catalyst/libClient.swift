@@ -64,7 +64,6 @@ private let logger = Logger(
 private let useFirstPassword = Defaults.bool(forKey: "UseFirstPassword")
 private let firstPassword = try! getFirstPassword()
 private let removeKeychain = Defaults.bool(forKey: "RemoveKeychain")
-private let migrateFromMacOSLAPS = Defaults.bool(forKey: "MigrateFromMacOSLAPS")
 private let daysToExpiration = Defaults.integer(forKey: "DaysToExpiration")
 
 /**
@@ -178,27 +177,8 @@ class LocalTools: NSObject {
             // If the attribute is nil then use our first password from config profile to change the password
             if old_password == nil || useFirstPassword == true {
                 do {
-                    logger.info("Performing first password change using FirstPass key from configuration profile or string command line argument specified.")
-                    if(migrateFromMacOSLAPS == true) {
-                        logger.info("macOSLAPS Migration flag is true, pulling migration key from file")
-                        // get secret from file location
-                        let fm = FileManager.default
-                        if(fm.fileExists(atPath: "/var/root/.GeneratedLAPSServiceName.cbc")) {
-                            let path = "/var/root/.GeneratedLAPSServiceName.cbc"
-                            let serial = Data(try getSerialNumber().utf8)
-                            let hashSerial = SHA256.hash(data: serial).description.split(separator: " ", omittingEmptySubsequences: true)
-                            // decrypt secret
-                            let decrypt = Shell.run(launchPath: "/usr/bin/openssl", arguments: ["enc","-aes-256-cbc", "-d", "-in",path,"-pass", "pass:" + hashSerial[2], "-pbkdf2", "-md", "sha256"])
-                            try local_admin_record.changePassword(decrypt, toPassword: newPassword)
-                            Shell.run(launchPath: "rm", arguments: ["/var/root/.GeneratedLAPSServiceName.cbc"])
-                        } else {
-                            logger.info("No migration file found, falling back to config profile")
-                            try local_admin_record.changePassword(firstPassword, toPassword: newPassword)
-                        }
-                    } else {
-                        logger.info("No migration flag set, using config profile for first key")
-                        try local_admin_record.changePassword(firstPassword, toPassword: newPassword)
-                    }
+                    logger.info("Performing first password change using FirstPass key from configuration profile")
+                    try local_admin_record.changePassword(firstPassword, toPassword: newPassword)
                 } catch {
                     logger.error("Unable to change password for local administrator \(adminUsername) using FirstPassword Key.")
                     throw clientError.firstPasswordChangeError

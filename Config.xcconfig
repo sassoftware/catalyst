@@ -8,5 +8,5 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-VERSION = 63
-BUILD_NUMBER = 35463ce27ea67ace756daacbc1d80dce8a63243a
+VERSION = 10
+BUILD_NUMBER = ac005188808951b2c51021c4cf7aa50bec2ee243

@@ -41,7 +41,6 @@
 		7B8EC0112D306D7700B91134 /* ContributorAgreement.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ContributorAgreement.txt; sourceTree = "<group>"; };
 		7B8EC0132D306D7700B91134 /* SECURITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SECURITY.md; sourceTree = "<group>"; };
 		7B8EC0142D306D7700B91134 /* SUPPORT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SUPPORT.md; sourceTree = "<group>"; };
-		7B8FE9362C6E7FD500D787C6 /* pkg.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pkg.sh; sourceTree = "<group>"; };
 		7BBE219A2BD6E0DC0078FC52 /* common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = common.swift; sourceTree = "<group>"; };
 		7BBE219C2BD6E9B50078FC52 /* libCatalyst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = libCatalyst.swift; sourceTree = "<group>"; };
 		7BBE21A12BD80FF20078FC52 /* libKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = libKeychain.swift; sourceTree = "<group>"; };
@@ -77,7 +76,6 @@
 				7816B41A2BD0415400F125D3 /* Info.plist */,
 				7B5D01F02BF52A1E00CA5294 /* catalyst */,
 				7816B4112BD03DBC00F125D3 /* Products */,
-				7B8FE9362C6E7FD500D787C6 /* pkg.sh */,
 				7B09B3872E0B1BB400BB3C64 /* AppIcon.icon */,
 			);
 			sourceTree = "<group>";

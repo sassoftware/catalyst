@@ -31,5 +31,4 @@ Copyright 2025 SAS Institute Inc., Cary, NC USA.
 
 This project is licensed under the [Apache 2.0 License](LICENSE).
 
-This work is based in part on [CloudLAPS](https://github.com/MSEndpointMgr/CloudLAPS) (Copyright 2021 MSEndpointMgr, MIT License), [macOSLAPS](https://github.com/joshua-d-miller/macOSLAPS) (Copyright 2021 Joshua D. Miller, MIT License) and
-    [jss-filefault-reissue](https://github.com/homebysix/jss-filevault-reissue) (Copyright 2022 Elliot Jordan, Apache 2 License).
+This work is based in part on [CloudLAPS](https://github.com/MSEndpointMgr/CloudLAPS) (Copyright 2021 MSEndpointMgr, MIT License) and [macOSLAPS](https://github.com/joshua-d-miller/macOSLAPS) (Copyright 2021 Joshua D. Miller, MIT License)

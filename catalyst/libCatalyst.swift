@@ -636,7 +636,8 @@ func sendClientEvent(result: String, message: String) throws {
         logger.trace("Constructor Client Event Header Table returned success")
     } catch catalystError.clientEventHeaderTableConstructError(status: 0) {
         logger.error("Received error from libCatalyst: Failed to build Client Event Header Table")
-        exit(1)
+        // handled here since its simpler than catching again and rethrowing in main.
+        exit(9119)
     }
     do {
         logger.trace("Attempting client event transaction with \(clientEventUri)")

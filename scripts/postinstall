@@ -29,7 +29,7 @@ else
     newadminfullname="itadmin"
 fi
 
-# Check if itadmin exists
+# Check if new admin account exists
 if id "$newadminaccount" &>/dev/null; then
     echo "$newadminaccount account already exists, moving on"
 else
@@ -49,7 +49,7 @@ else
     fi
 fi
 
-# Action 2: Check if localadmin exists and remove if it does
+# Action 2: Check if old admin account exists and remove if it does
 if id "$oldadminaccount" &>/dev/null; then
     echo "Removing $oldadminaccount account"
     sysadminctl -deleteUser $oldadminaccount

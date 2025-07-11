@@ -44,7 +44,7 @@ export migrate=""
 migrate=$(defaults read /Library/Managed\ Preferences/com.sas.catalyst MigrateFromMacOSLAPS)
 if [ -z "$migrate" ]; then
     echo "MigrateFromMacOSLAPS is not set, using default value"
-    migrate="false"
+    migrate="0"
 fi
 echo "MigrateFromMacOSLAPS is set to: $migrate"
 
@@ -91,7 +91,7 @@ fi
 
 # Validate we're migrating, check if old admin account exists and remove if it does
 if id "$oldadminaccount" >/dev/null 2>&1; then
-    if [ "$migrate" = "true" ]; then
+    if [ "$migrate" = "1" ]; then
         echo "Removing $oldadminaccount account"
         sysadminctl -deleteUser "$oldadminaccount"
     else
@@ -102,7 +102,7 @@ else
 fi
 
 # Validate we're migrating, check if macOSLAPS is installed and remove if it is
-if [ -e "/usr/local/laps/macOSLAPS" ] && [ "$migrate" = "true" ]; then
+if [ -e "/usr/local/laps/macOSLAPS" ] && [ "$migrate" = "1" ]; then
     echo "Removing macOSLAPS"
     sudo rm -f "/usr/local/laps/macOSLAPS"
     sudo rm -f "/usr/local/laps/macOSLAPS-repair"

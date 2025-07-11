@@ -18,47 +18,91 @@
 #  Created by Henry Kon on 5/30/24.
 #  edited Daniel Reis 7/30
 
-# Variables
-oldadminaccount="localadmin"
-if [ -e "/Library/Managed\ Preferences/com.sas.catalyst.plist"]; then
-    newadminaccount=defaults read /Library/Managed\ Preferences/com.sas.catalyst AdminUsername
-    newadminfullname=defaults read /Library/Managed\ Preferences/com.sas.catalyst AdminUsername
-else
-    echo "Could not read new admin username from preference file because the file does not exist"
+# Check if Managed Preference File Exists
+if [ ! -e "/Library/Managed Preferences/com.sas.catalyst.plist" ]; then
+    echo "FATAL: Managed Preferences file not found"
+    exit 1
+fi
+
+# Get new admin account and fullname from managed preferences
+# If not found, use default values
+export newadminaccount=""
+export newadminfullname=""
+newadminaccount=$(defaults read /Library/Managed\ Preferences/com.sas.catalyst AdminUsername)
+newadminfullname=$(defaults read /Library/Managed\ Preferences/com.sas.catalyst AdminUsername)
+if [ -z "$newadminaccount" ] || [ -z "$newadminfullname" ]; then
+    echo "New admin username or fullname is empty, using default values"
     newadminaccount="itadmin"
     newadminfullname="itadmin"
+else
+    echo "New admin account: $newadminaccount, Fullname: $newadminfullname"
+fi
+
+# Check if MigrateFromMacOSLAPS is set to true in managed preference
+# If not found, use default value of false
+export migrate=""
+migrate=$(defaults read /Library/Managed\ Preferences/com.sas.catalyst MigrateFromMacOSLAPS)
+if [ -z "$migrate" ]; then
+    echo "MigrateFromMacOSLAPS is not set, using default value"
+    migrate="false"
+fi
+echo "MigrateFromMacOSLAPS is set to: $migrate"
+
+# Check if old admin account is set in managed preferences
+# If not found, use default value
+export oldadminaccount=""
+oldadminaccount=$(defaults read /Library/Managed\ Preferences/com.sas.catalyst OldAdminUsername)
+if [ -z "$oldadminaccount" ]; then
+    echo "Old admin username is empty, using default value"
+    oldadminaccount="localadmin"
+else
+    echo "Old admin account: $oldadminaccount"
 fi
 
 # Check if new admin account exists
-if id "$newadminaccount" &>/dev/null; then
+# If it does, skip creation
+# If it does not, create it with a password
+# The password will be retrieved from managed preferences or generated if not found
+if id "$newadminaccount" >/dev/null 2>&1; then
     echo "$newadminaccount account already exists, moving on"
 else
     echo "Creating $newadminaccount account"
-    export pass=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
-    export pass=$(echo -n $pass | shasum -a 256 | cut -d ' ' -f1)
-    sysadminctl -addUser $newadminaccount -fullName "$newadminfullname" -password $pass -admin
+    export pass=""
+    pass=$(defaults read /Library/Managed\ Preferences/com.sas.catalyst FirstPassword)
+    if [ -z "$pass" ]; then
+        echo "No password found in managed preferences, generating a new one"
+        pass=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
+        pass=$(printf '%s' "$pass" | shasum -a 256 | cut -d ' ' -f1)
+    fi
+    sysadminctl -addUser "$newadminaccount" -fullName "$newadminfullname" -password "$pass" -admin
 
     # Verify the password set works
     echo "Verifying $newadminaccount account password"
-    dscl . -authonly $newadminaccount $pass
-    if [ $? -eq 0 ]; then
+    if dscl . -authonly "$newadminaccount" "$pass"; then
         echo "Password verification successful"
     else
         echo "Password verification failed"
         exit 1
     fi
+
+    # Unset the password variable
+    unset pass
 fi
 
-# Action 2: Check if old admin account exists and remove if it does
-if id "$oldadminaccount" &>/dev/null; then
-    echo "Removing $oldadminaccount account"
-    sysadminctl -deleteUser $oldadminaccount
+# Validate we're migrating, check if old admin account exists and remove if it does
+if id "$oldadminaccount" >/dev/null 2>&1; then
+    if [ "$migrate" = "true" ]; then
+        echo "Removing $oldadminaccount account"
+        sysadminctl -deleteUser "$oldadminaccount"
+    else
+        echo "Old admin account found but migration is not set to true, skipping removal"
+    fi
 else
     echo "No $oldadminaccount account found, moving on"
 fi
 
-# Action 3: Check if macOSLAPS is installed and remove if it is
-if [ -e "/usr/local/laps/macOSLAPS" ]; then
+# Validate we're migrating, check if macOSLAPS is installed and remove if it is
+if [ -e "/usr/local/laps/macOSLAPS" ] && [ "$migrate" = "true" ]; then
     echo "Removing macOSLAPS"
     sudo rm -f "/usr/local/laps/macOSLAPS"
     sudo rm -f "/usr/local/laps/macOSLAPS-repair"
@@ -73,10 +117,7 @@ else
     echo "No macOSLAPS install found, moving on"
 fi
 
-# Action 4: Unset the password variable
-unset pass
-
-# Action 5: Enable launch daemon and run
+# Enable launch daemon and run
 EnableLaunchDaemonAndRun() {
     if [ -e "/Library/LaunchDaemons/com.sas.catalyst-run.plist" ]; then
         launchctl unload /Library/LaunchDaemons/com.sas.catalyst-run.plist

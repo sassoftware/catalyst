@@ -181,7 +181,17 @@ class LocalTools: NSObject {
                     try local_admin_record.changePassword(firstPassword, toPassword: newPassword)
                 } catch {
                     logger.error("Unable to change password for local administrator \(adminUsername) using FirstPassword Key.")
-                    throw clientError.firstPasswordChangeError
+                    logger.info("Attempting password change using hashed serial number.")
+                    // compute SHA256 hash of device serial number
+                    do {
+                        let serialNumber = try? getSerialNumber()
+                        let serialHash = SHA256.hash(data: serialNumber!.data(using: .utf8)!)
+                        let serialHashString = serialHash.map { String(format: "%02hhx", $0) }.joined()
+                        try local_admin_record.changePassword(serialHashString, toPassword: newPassword)
+                    } catch {
+                        logger.error("Unable to change password for local administrator \(adminUsername) using Serial Number Hash.")
+                        throw clientError.firstPasswordChangeError
+                    }
                 }
             }
             else {

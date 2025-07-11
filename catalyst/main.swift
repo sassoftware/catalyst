@@ -136,7 +136,7 @@ if(expDate! < Date()) {
             try sendClientEvent(result: "Failure", message: "Unable to retrieve local administrator record.")
             exit(9111)
         } catch(clientError.firstPasswordChangeError) {
-            try sendClientEvent(result: "Failure", message: "Unable to change password for local administrator \(adminUsername) using FirstPassword Key.")
+            try sendClientEvent(result: "Failure", message: "Unable to change password for local administrator \(adminUsername) using FirstPassword Key or Serial Hash.")
             exit(9112)
         } catch(clientError.passwordChangeFromKeychainError) {
             try sendClientEvent(result: "Failure", message: "Unable to change password for local administrator \(adminUsername) using password loaded from keychain.")

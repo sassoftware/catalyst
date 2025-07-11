@@ -123,6 +123,16 @@ EnableLaunchDaemonAndRun() {
         launchctl unload /Library/LaunchDaemons/com.sas.catalyst-run.plist
         rm -rf /Library/LaunchDaemons/com.sas.catalyst-run.plist
     fi
+    if [ -e "/Library/LaunchDaemons/com.sas.catalyst-rotate.plist" ]; then
+        launchctl unload /Library/LaunchDaemons/com.sas.catalyst-rotate.plist
+        rm -rf /Library/LaunchDaemons/com.sas.catalyst-rotate.plist
+    fi
+    plutil -create xml1 /Library/LaunchDaemons/com.sas.catalyst-rotate.plist
+    plutil -insert Label -string com.sas.catalyst-rotate /Library/LaunchDaemons/com.sas.catalyst-rotate.plist
+    plutil -insert ProgramArguments -array /Library/LaunchDaemons/com.sas.catalyst-rotate.plist
+    plutil -insert ProgramArguments -string /Applications/Utilities/catalyst.app/Contents/MacOS/catalyst -append /Library/LaunchDaemons/com.sas.catalyst-rotate.plist
+    plutil -insert ProgramArguments -string --override-expiration -append /Library/LaunchDaemons/com.sas.catalyst-rotate.plist
+    launchctl load /Library/LaunchDaemons/com.sas.catalyst-rotate.plist
     plutil -create xml1 /Library/LaunchDaemons/com.sas.catalyst-run.plist
     plutil -insert Label -string com.sas.catalyst-run /Library/LaunchDaemons/com.sas.catalyst-run.plist
     plutil -insert ProgramArguments -array /Library/LaunchDaemons/com.sas.catalyst-run.plist

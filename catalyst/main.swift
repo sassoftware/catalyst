@@ -86,8 +86,10 @@ var failureMessage = ""
 var expDate = try? LocalTools.getExpirationDate()
 /// Date Formatter instantiation.
 let formatter = DateFormatter()
+/// Command-line Flag to Force Secret Rotation
+let overrideExpiration = CommandLine.arguments.contains("--override-expiration")
 
-if(expDate! < Date()) {
+if(expDate! < Date() || overrideExpiration) {
     do {
         /* Construct Secret Event Header Table */
         do {
@@ -153,7 +155,11 @@ if(expDate! < Date()) {
         }
         let newExpDate = try? LocalTools.getExpirationDate()
         logger.info("Password rotation success for account \(adminUsername). New expiration date is \(getDateStringFromDate(date: newExpDate!))")
-        try sendClientEvent(result: "Success", message: "Password rotation completed successfully")
+        if(overrideExpiration) {
+            try sendClientEvent(result: "Success", message: "Password rotation completed successfully (Overridden)")
+        } else {
+            try sendClientEvent(result: "Success", message: "Password rotation completed successfully")
+        }
     } catch catalystError.webRequestEncodingError {
         logger.error("Secret event web request encoding error")
         exit(9117)

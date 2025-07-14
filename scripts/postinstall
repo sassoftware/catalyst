@@ -18,6 +18,18 @@
 #  Created by Henry Kon on 5/30/24.
 #  edited Daniel Reis 7/30
 
+waitforSetupAssistant () {
+  until [[ -f /var/db/.AppleSetupDone ]]; do
+    delay=$(( $RANDOM % 50 + 10 ))
+    echo "$(date) |  + Setup Assistant not done, waiting [$delay] seconds"
+    sleep $delay
+  done
+  echo "$(date) | Setup Assistant is done, lets carry on"
+}
+
+# Wait for setup assistant to complete to prevent this account from becoming primary
+waitforSetupAssistant
+
 # Check if Managed Preference File Exists
 if [ ! -e "/Library/Managed Preferences/com.sas.catalyst.plist" ]; then
     echo "FATAL: Managed Preferences file not found"
